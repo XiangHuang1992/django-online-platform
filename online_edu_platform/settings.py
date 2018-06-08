@@ -46,11 +46,17 @@ INSTALLED_APPS = [
     'course.apps.CourseConfig',
     'xadmin',
     'crispy_forms',
-    'reversion'
+    'reversion',
+    'captcha'
 ]
+
 
 # 重载AUTH_USER_MODEL
 AUTH_USER_MODEL = 'users.UserProfile'
+
+AUTHENTICATION_BACKENDS = (
+    'users.views.CustomBackend',
+)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -67,7 +73,7 @@ ROOT_URLCONF = 'online_edu_platform.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -81,6 +87,14 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'online_edu_platform.wsgi.application'
+
+# email send settings
+EMAIL_HOST = "smtp.qq.com"  # SMTP服务器主机
+EMAIL_PORT = 25             # 端口
+EMAIL_HOST_USER = "87525548@qq.com"       # 邮箱地址
+EMAIL_HOST_PASSWORD = "diaathlxrpddbccj"    # 密码
+EMAIL_USE_TLS = True
+EMAIL_FROM = "875255458@qq.com"            # 邮箱地址
 
 
 # Database
@@ -142,3 +156,7 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+# 配置staticfiles路径
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)

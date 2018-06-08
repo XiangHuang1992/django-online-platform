@@ -269,10 +269,7 @@ venv.bak/
 /site
 
 # mypy
-.mypy_cache/
-
-.gitignore
-.idea/
+.mypy_cache.idea/
 .venv/bin/
 .venv/lib/python3.6/__future__.py
 .venv/lib/python3.6/__pycache__/
